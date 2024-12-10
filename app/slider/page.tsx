@@ -1,4 +1,9 @@
-import HomePage from "./components/SearchFunctionnalityComponents/HomePage";
+"use client";
+
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const projects = [
   {
@@ -45,7 +50,42 @@ const projects = [
 ];
 
 function ReactSlick() {
-  return <HomePage />;
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
+  return (
+    <div className="w-3/4 mx-auto">
+      <div className="mt-20">
+        <Slider {...settings}>
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="bg-white h-[450px] text-black rounded-xl"
+            >
+              <div className="h-56 rounded-t-xl bg-indigo-500 flex justify-center items-center">
+                <img
+                  src={project.image}
+                  alt=""
+                  className="h-44 w-44 rounded-full"
+                />
+              </div>
+              <div className="flex flex-col items-center justify-center gap-4 p-4">
+                <p className="text-xl font-semibold">{project.name}</p>
+                <p className="text-center">{project.description}</p>
+                <button className="bg-indigo-500 text-white text-lg py-2 px-6 rounded">
+                  See more
+                </button>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </div>
+  );
 }
 
 export default ReactSlick;
